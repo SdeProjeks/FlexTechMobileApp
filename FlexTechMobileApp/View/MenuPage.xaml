@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FlexTechMobileApp.View.MenuPage"
+             xmlns:model="clr-namespace:FlexTechMobileApp.Models"
+             xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             x:DataType="viewmodel:MenuViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            
+            
+            <Label Text="Menu"
+                   FontSize="Title" FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+
+            <Button Text="Lagersystem" />
+
+
+
+            <Button Text="Årlig optælling" />
+
+            <Button Text="Log ud" 
+                    BackgroundColor="{StaticResource DeleteBtn}"
+                    BorderColor="{StaticResource DeleteBtnBorder}"
+                    Margin="0,50,0,0"
+                    WidthRequest="200"/>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+    
+</ContentPage>
