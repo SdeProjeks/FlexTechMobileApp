@@ -1,9 +1,12 @@
+using FlexTechMobileApp.ViewModels;
+
 namespace FlexTechMobileApp.View;
 
 public partial class ProductModelsPage : ContentPage
 {
-	public ProductModelsPage()
+	public ProductModelsPage(ProductModelsViewModel productModelsViewModel)
 	{
 		InitializeComponent();
-	}
+		BindingContext = productModelsViewModel;
+    }
 }

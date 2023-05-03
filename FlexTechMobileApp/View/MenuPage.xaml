@@ -18,13 +18,13 @@
                    FontSize="Title" FontAttributes="Bold"
                    HorizontalOptions="Center"/>
 
-            <Button Text="Lagersystem" />
+            <Button Text="Lagersystem" Command="{Binding LagerSystemCommand}"/>
 
 
 
-            <Button Text="Årlig optælling" />
+            <Button Text="Årlig optælling" Command="{Binding AnnualCensusCommand}"/>
 
-            <Button Text="Log ud" 
+            <Button Text="Log ud" Command="{Binding LogoutCommand}"
                     BackgroundColor="{StaticResource DeleteBtn}"
                     BorderColor="{StaticResource DeleteBtnBorder}"
                     Margin="0,50,0,0"
