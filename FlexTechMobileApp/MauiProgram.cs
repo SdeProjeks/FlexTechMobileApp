@@ -1,4 +1,5 @@
-﻿using FlexTechMobileApp.View;
+﻿using FlexTechMobileApp.Services;
+using FlexTechMobileApp.View;
 using FlexTechMobileApp.ViewModels;
 
 namespace FlexTechMobileApp;
@@ -20,7 +21,9 @@ public static class MauiProgram
 		builder.Services.AddSingleton<LoginViewModel>();
 		builder.Services.AddSingleton<MenuPage>();
 		builder.Services.AddSingleton<MenuViewModel>();
+		builder.Services.AddSingleton<ProductModelService>();
 		builder.Services.AddSingleton<ProductModelsPage>();
+		builder.Services.AddSingleton<BarcodeReaderPage>();
 		builder.Services.AddTransient<ProductModelsViewModel>();
 		builder.Services.AddTransient<ProductModelDetailsViewModel>();
 

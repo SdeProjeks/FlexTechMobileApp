@@ -11,6 +11,8 @@
     <Color x:Key="EditBtnBorder">#D6B656</Color>
     <Color x:Key="DeleteBtn">#F8CECC</Color>
     <Color x:Key="DeleteBtnBorder">#B85450</Color>
+    <Color x:Key="TableHeader">#A7C942</Color>
+    <Color x:Key="TableItem">#EAF2D3</Color>
     <Color x:Key="Primary">#512BD4</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
