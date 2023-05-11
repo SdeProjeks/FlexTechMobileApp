@@ -277,6 +277,24 @@ namespace FlexTechMobileApp.Resources.Translations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sure you wanna extract from the warehouse?.
+        /// </summary>
+        internal static string SureYouWannaExtract {
+            get {
+                return ResourceManager.GetString("SureYouWannaExtract", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure you wanna move the product?.
+        /// </summary>
+        internal static string WannaMoveTheProductTo {
+            get {
+                return ResourceManager.GetString("WannaMoveTheProductTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Weight.
         /// </summary>
         internal static string Weight {

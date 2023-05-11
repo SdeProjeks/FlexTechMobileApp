@@ -189,6 +189,12 @@
   <data name="Search" xml:space="preserve">
     <value>Søg</value>
   </data>
+  <data name="SureYouWannaExtract" xml:space="preserve">
+    <value>Sikker på at du ville udtrække fra lagerhuset?</value>
+  </data>
+  <data name="WannaMoveTheProductTo" xml:space="preserve">
+    <value>Sikker på at du ville flytte dette produkt?</value>
+  </data>
   <data name="Weight" xml:space="preserve">
     <value>Vægt</value>
   </data>

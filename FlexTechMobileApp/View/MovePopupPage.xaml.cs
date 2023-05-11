@@ -10,12 +10,14 @@ public partial class MovePopupPage
 {
     MovePopupViewModel ViewModel;
     Warehouse Selected;
+    ILocalizationResourceManager _localizationResourceManager;
 
-	public MovePopupPage(MovePopupViewModel viewModel)
+	public MovePopupPage(MovePopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager)
 	{
 		InitializeComponent();
         BindingContext = viewModel;
         ViewModel = viewModel;
+        _localizationResourceManager = localizationResourceManager;
 	}
 
     /* For the pesky user who miss clicked and wanna go back to the popup menu.
@@ -36,13 +38,20 @@ public partial class MovePopupPage
 
         try
         {
-            if (IsBusy)
+            bool confirmed = await DisplayAlert(_localizationResourceManager["Confirmation"], _localizationResourceManager["WannaMoveTheProductTo"], _localizationResourceManager["Yes"], _localizationResourceManager["No"]);
+
+            if (IsBusy || !confirmed)
+            {
                 return;
+            }
+
+            IsBusy = true;
 
             // API CALL FOR UPDATE
             await Shell.Current.DisplayAlert("API CALL", Selected.Name, "OK");
 
             await MopupService.Instance.PopAllAsync();
+
         }
         finally
         {

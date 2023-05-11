@@ -10,12 +10,14 @@ namespace FlexTechMobileApp.View;
 public partial class ProductPopupPage
 {
     private ProductPopupViewModel ViewModel;
+    ILocalizationResourceManager _localizationResourceManager;
 
-	public ProductPopupPage(ProductPopupViewModel viewModel)
+	public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
         ViewModel = viewModel;
+        _localizationResourceManager = localizationResourceManager;
 	}
 
     // Closes the popup did you expect anything else ?_?
@@ -31,7 +33,9 @@ public partial class ProductPopupPage
     {
         try
         {
-            if (IsBusy)
+            bool confirmed = await DisplayAlert(_localizationResourceManager["Confirmation"], _localizationResourceManager["SureYouWannaExtract"], _localizationResourceManager["Yes"], _localizationResourceManager["No"]);
+
+            if (IsBusy || !confirmed)
                 return;
 
             IsBusy = true;
@@ -67,7 +71,7 @@ public partial class ProductPopupPage
             MovePopupViewModel movePopupViewModel = new(ViewModel.Product, warehouses);
 
             
-            await MopupService.Instance.PushAsync(new MovePopupPage(movePopupViewModel));
+            await MopupService.Instance.PushAsync(new MovePopupPage(movePopupViewModel, _localizationResourceManager));
         }
         finally
         {

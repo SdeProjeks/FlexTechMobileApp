@@ -1,16 +1,21 @@
 using CommunityToolkit.Maui.Views;
 using FlexTechMobileApp.Models;
 using FlexTechMobileApp.ViewModels;
+using LocalizationResourceManager.Maui;
 using Mopups.Services;
 
 namespace FlexTechMobileApp.View;
 
 public partial class ProductModelDetailsPage : ContentPage
 {
-	public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel)
+	ILocalizationResourceManager _localizationResourceManager;
+
+	public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel, ILocalizationResourceManager localizationResourceManager)
 	{
 		InitializeComponent();
 		BindingContext = viewmodel;
+
+		_localizationResourceManager = localizationResourceManager;
 	}
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -28,7 +33,7 @@ public partial class ProductModelDetailsPage : ContentPage
 
             ProductPopupViewModel viewModel = new(product);
 
-            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel));
+            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel, _localizationResourceManager));
         }
 		finally
 		{
