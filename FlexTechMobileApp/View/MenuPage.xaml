@@ -4,6 +4,7 @@
              x:Class="FlexTechMobileApp.View.MenuPage"
              xmlns:model="clr-namespace:FlexTechMobileApp.Models"
              xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
              x:DataType="viewmodel:MenuViewModel"
              Title="{Binding Title}">
 
@@ -14,17 +15,17 @@
             VerticalOptions="Center">
             
             
-            <Label Text="Menu"
+            <Label Text="{loc:Translate Menu}"
                    FontSize="Title" FontAttributes="Bold"
                    HorizontalOptions="Center"/>
 
-            <Button Text="Lagersystem" Command="{Binding LagerSystemCommand}"/>
+            <Button Text="{loc:Translate InventorySystem}" Command="{Binding LagerSystemCommand}"/>
 
 
 
-            <Button Text="Årlig optælling" Command="{Binding AnnualCensusCommand}"/>
+            <Button Text="{loc:Translate AnnualCensus}" Command="{Binding AnnualCensusCommand}"/>
 
-            <Button Text="Log ud" Command="{Binding LogoutCommand}"
+            <Button Text="{loc:Translate Logout}" Command="{Binding LogoutCommand}"
                     BackgroundColor="{StaticResource DeleteBtn}"
                     BorderColor="{StaticResource DeleteBtnBorder}"
                     Margin="0,50,0,0"

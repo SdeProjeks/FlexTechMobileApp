@@ -1,3 +1,4 @@
+using FlexTechMobileApp.Models;
 using FlexTechMobileApp.ViewModels;
 
 namespace FlexTechMobileApp.View;
@@ -25,6 +26,14 @@ public partial class ProductModelsPage : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync(nameof(ProductModelDetailsPage),true);
+        var productModel = ((VisualElement)sender).BindingContext as ProductModel;
+
+        if (productModel == null)
+            return;
+        
+        await Shell.Current.GoToAsync(nameof(ProductModelDetailsPage),true, new Dictionary<string, Object>
+        {
+            {"ProductModel", productModel }
+        });
     }
 }

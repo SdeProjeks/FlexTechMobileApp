@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             x:DataType="viewmodel:MovePopupViewModel"
+             x:Class="FlexTechMobileApp.View.MovePopupPage"
+             xmlns:model="clr-namespace:FlexTechMobileApp.Models"
+             BackgroundColor="Transparent"
+             CloseWhenBackgroundIsClicked="True">
+
+    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="250">
+        <VerticalStackLayout>
+            <Label Text="{Binding Product.Barcode}" FontSize="Medium" Margin="0,0,0,20" HorizontalOptions="Center" />
+
+            <FlexLayout Margin="0,0,0,15">
+                <Label Text="{loc:Translate Current,StringFormat='{0}: '}" FontAttributes="Bold"/>
+                <Label Text="Name of current" />
+            </FlexLayout>
+
+            <Picker x:Name="NewWarehouse"
+                    Title="{loc:Translate ChooseAnotherWarehouse}" Margin="0,0,0,30"
+                    ItemsSource="{Binding WarehouseList}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{model:Warehouse}" 
+                    SelectedIndexChanged="NewWarehouse_SelectedIndexChanged" />
+
+
+            <FlexLayout Direction="Row" HorizontalOptions="Center">
+                <Button Text="{loc:Translate Cancel}" Margin="0,0,5,0" Clicked="Button_Clicked_Cancel" 
+                        BorderColor="{StaticResource DefaultBtnBorder}"
+                        BackgroundColor="{StaticResource DefaultBtn}"/>
+                <Button Text="{loc:Translate Save}" Margin="5,0,0,0" Clicked="Button_Clicked_Save"
+                        BorderColor="{StaticResource SaveBtnBorder}"
+                        BackgroundColor="{StaticResource SaveBtn}"/>
+            </FlexLayout>
+        </VerticalStackLayout>
+    </Frame>
+</mopups:PopupPage>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
+             xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
+             x:DataType="viewmodel:ProductPopupViewModel"
+             x:Class="FlexTechMobileApp.View.ProductPopupPage"
+             CloseWhenBackgroundIsClicked="True"
+             BackgroundColor="Transparent">
+    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="250">
+        <VerticalStackLayout>
+            <Label Text="{Binding Product.Barcode}" FontSize="Medium" Margin="0,0,0,20"
+                   HorizontalOptions="Center"/>
+
+            <Button VerticalOptions="Center" Text="{loc:Translate Move}" Margin="0,0,0,5" 
+                    BackgroundColor="{StaticResource EditBtn}"
+                    BorderColor="{StaticResource EditBtnBorder}"
+                    Clicked="Button_Clicked_Move"/>
+            <Button Text="{loc:Translate Extract}" Margin="0,0,0,30" 
+                    BackgroundColor="{StaticResource DeleteBtn}"
+                    BorderColor="{StaticResource DeleteBtnBorder}"
+                    Clicked="Button_Clicked_Extract"/>
+            <Button Text="{loc:Translate Close}"
+                    Background="{StaticResource DefaultBtn}"
+                    BorderColor="{StaticResource DefaultBtnBorder}"
+                    Clicked="Button_Clicked_Close"/>
+        </VerticalStackLayout>
+    </Frame>
+</mopups:PopupPage>

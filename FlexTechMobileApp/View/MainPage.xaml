@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:FlexTechMobileApp.Models"
              xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
              x:DataType="viewmodel:LoginViewModel"
              x:Class="FlexTechMobileApp.MainPage"
              Title="{Binding Title}"
@@ -14,24 +15,24 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label Text="Lagersystem" FontSize="Title" 
+            <Label Text="{loc:Translate InventorySystem}" FontSize="Title" 
                    HorizontalTextAlignment="Center"/>
 
-            <Entry Placeholder="Email" Text="{Binding Email}"
+            <Entry Placeholder="{loc:Translate Email}" Text="{Binding Email}"
                    Keyboard="Email"
                    ClearButtonVisibility="WhileEditing"
                    HorizontalTextAlignment="Center" >   
             </Entry>
 
 
-            <Entry Placeholder="Password" IsPassword="True"
+            <Entry Placeholder="{loc:Translate Password}" IsPassword="True"
                    Text="{Binding Password}"
                    ClearButtonVisibility="WhileEditing"
                    HorizontalTextAlignment="Center"/>
 
             <Button
                 x:Name="CounterBtn"
-                Text="Login"
+                Text="{loc:Translate Login}"
                 WidthRequest="150"
                 Command="{Binding PostLoginCommand}"
                 />

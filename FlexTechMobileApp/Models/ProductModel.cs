@@ -20,7 +20,6 @@ namespace FlexTechMobileApp.Models
         public float Price { get; set; }
         public DateTime Createdat { get; set; }
         public DateTime Updatedat { get; set; }
-
-
+        public List<Product> Products { get; set; } = new();
     }
 }

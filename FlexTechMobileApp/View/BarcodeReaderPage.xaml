@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="FlexTechMobileApp.View.BarcodeReaderPage"
-             Title="BarcodeReaderPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+             Title="Barcode Reader">
+    <VerticalStackLayout VerticalOptions="Start">
+        <cv:CameraView x:Name="cameraView" WidthRequest="400" HeightRequest="300" CamerasLoaded="cameraView_CamerasLoaded" 
+                       BarCodeDetectionEnabled="True" BarcodeDetected="cameraView_BarcodeDetected"/>
+
+        <Label x:Name="barcodeText" HorizontalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>

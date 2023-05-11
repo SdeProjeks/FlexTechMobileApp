@@ -4,6 +4,7 @@
              x:Class="FlexTechMobileApp.View.ProductModelsPage"
              xmlns:model="clr-namespace:FlexTechMobileApp.Models"
              xmlns:viewmodel="clr-namespace:FlexTechMobileApp.ViewModels"
+             xmlns:loc="clr-namespace:LocalizationResourceManager.Maui;assembly=LocalizationResourceManager.Maui"
              x:DataType="viewmodel:ProductModelsViewModel"
              Title="{Binding Title}">
 
@@ -13,24 +14,24 @@
                 <Grid RowDefinitions="65,40" ColumnDefinitions="30*,25*,11*,24*,10*">
                     <FlexLayout Direction="Row" HeightRequest="50" Grid.ColumnSpan="5" VerticalOptions="Center" HorizontalOptions="End">
                         <Button Text="QR" WidthRequest="50" HeightRequest="50" Margin="5,0,-5,0" Command="{Binding GoToBarcodePageCommand}"/>
-                        <SearchBar x:Name="SearchBar" Placeholder="Search" SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="350"/>
+                        <SearchBar x:Name="SearchBar" Placeholder="{loc:Translate Search}" SearchButtonPressed="SearchBar_SearchButtonPressed" WidthRequest="350"/>
                     </FlexLayout>
 
                     <BoxView Color="{StaticResource TableHeader}" Grid.Row="1" Grid.ColumnSpan="5"/>
 
-                    <Label Text="Product Model" Grid.Row="1"
+                    <Label Text="{loc:Translate ProductModel}" Grid.Row="1"
                        HorizontalOptions="Center" VerticalOptions="Center"
                        FontAttributes="Bold" FontSize="Header"/>
 
-                    <Label Text="Barcode" Grid.Row="1" Grid.Column="1" 
+                    <Label Text="{loc:Translate Barcode}" Grid.Row="1" Grid.Column="1" 
                        HorizontalOptions="Center" VerticalOptions="Center"
                        FontAttributes="Bold" FontSize="Header"/>
 
-                    <Label Text="Weight" Grid.Row="1" Grid.Column="2" 
+                    <Label Text="{loc:Translate Weight}" Grid.Row="1" Grid.Column="2" 
                        HorizontalOptions="Center" VerticalOptions="Center"
                        FontAttributes="Bold" FontSize="Header"/>
 
-                    <Label Text="Dimensions" Grid.Row="1" Grid.Column="3" 
+                    <Label Text="{loc:Translate Dimensions}" Grid.Row="1" Grid.Column="3" 
                        HorizontalOptions="Center" VerticalOptions="Center"
                        FontAttributes="Bold" FontSize="Header"/>
                 </Grid>
@@ -38,7 +39,6 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:ProductModel">
                     <Grid RowDefinitions="*" ColumnDefinitions="30*,25*,11*,24*,10*">
-
                         <BoxView Color="{StaticResource TableItem}" Grid.ColumnSpan="5" />
 
                         <Label Text="{Binding Name}"
@@ -65,11 +65,11 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
             <CollectionView.Footer>
-                <Grid RowDefinitions="auto" ColumnDefinitions="30*,15*,10*,15*,30*" Padding="0,25,0,0">
-                    <Button Text="Previus" Grid.Column="1"
+                <Grid RowDefinitions="auto" ColumnDefinitions="20*,25*,10*,25*,20*" Padding="0,25,0,0">
+                    <Button Text="{loc:Translate Previous}" Grid.Column="1"
                         Background="White"/>
-                    <Button x:Name="Page" Text="{Binding Page}" Grid.Column="2" IsEnabled="False"/>
-                    <Button Text="Next" Grid.Column="3"
+                    <Label x:Name="Page" Text="{Binding Page}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    <Button Text="{loc:Translate Next}" Grid.Column="3"
                         Background="White" TextColor="Blue"/>
                 </Grid>
             </CollectionView.Footer>

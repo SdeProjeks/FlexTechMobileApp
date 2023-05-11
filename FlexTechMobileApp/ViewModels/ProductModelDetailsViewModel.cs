@@ -1,15 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FlexTechMobileApp.Models;
 
 namespace FlexTechMobileApp.ViewModels
 {
+    [QueryProperty(nameof(ProductModel), "ProductModel")]
     public partial class ProductModelDetailsViewModel : BaseViewModel
     {
         public ProductModelDetailsViewModel() {
-            Title = "Login";
+
         }
+
+        [ObservableProperty]
+        ProductModel productModel;
+
+        [ObservableProperty]
+        int page = 1;
     }
 }
