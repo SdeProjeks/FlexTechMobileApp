@@ -33,11 +33,19 @@ namespace FlexTechMobileApp.ViewModels
             try
             {
                 IsBusy = true;
+                LoginService LoginService = new();
 
-                //User user = await loginService.PostLogin();
 
-                // Sets session
-                await SecureStorage.Default.SetAsync("oAuth", "I am session");
+                string login = await LoginService.PostLogin(Email, Password);
+
+                if (login == "Error") {
+                    return;
+                }
+
+                await SecureStorage.Default.SetAsync("Token", login); // Sets session
+
+                Password = ""; // Resets the password input field
+
 
                 await Shell.Current.GoToAsync(nameof(MenuPage), true);
             }
