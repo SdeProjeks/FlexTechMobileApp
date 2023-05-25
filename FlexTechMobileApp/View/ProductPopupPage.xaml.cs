@@ -11,13 +11,15 @@ public partial class ProductPopupPage
 {
     private ProductPopupViewModel ViewModel;
     ILocalizationResourceManager _localizationResourceManager;
+    ProductModelDetailsViewModel _productModelDetailsViewModel;
 
-	public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager)
+	public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager, ProductModelDetailsViewModel productModelDetailsViewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
         ViewModel = viewModel;
         _localizationResourceManager = localizationResourceManager;
+        _productModelDetailsViewModel = productModelDetailsViewModel;
 	}
 
     // Closes the popup did you expect anything else ?_?
@@ -39,10 +41,7 @@ public partial class ProductPopupPage
                 return;
 
             IsBusy = true;
-            // API call to extract/change the category of the product
-            await DisplayAlert("Call API", "API called", "OK");
-
-            await MopupService.Instance.PopAsync();
+            await ViewModel.Extract(_productModelDetailsViewModel);
         }
         finally
         {

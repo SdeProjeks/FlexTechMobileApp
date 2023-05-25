@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
+using FlexTechMobileApp.Services;
 
 namespace FlexTechMobileApp.ViewModels
 {
@@ -16,6 +17,8 @@ namespace FlexTechMobileApp.ViewModels
     {
         [ObservableProperty]
         Product product;
+
+        ProductService productService = new();
 
         public ProductPopupViewModel(Product viewModel) { 
             product = viewModel;
@@ -34,6 +37,11 @@ namespace FlexTechMobileApp.ViewModels
             var toast = Toast.Make(text, duration, fontSize);
 
             await toast.Show(cancellationTokenSource.Token);
+        }
+
+        public async Task Extract(ProductModelDetailsViewModel viewModel)
+        {
+            await productService.DeleteProduct(Product, viewModel);
         }
     }
 }

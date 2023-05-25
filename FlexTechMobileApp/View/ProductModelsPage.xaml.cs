@@ -36,4 +36,14 @@ public partial class ProductModelsPage : ContentPage
             {"ProductModel", productModel }
         });
     }
+
+    private async void Button_Clicked_Prev(object sender, EventArgs e)
+    {
+        await viewModel.SwitchPagesAsync(viewModel.Previus);
+    }
+
+    private async void Button_Clicked_Next(object sender, EventArgs e)
+    {
+        await viewModel.SwitchPagesAsync(viewModel.Next);
+    }
 }

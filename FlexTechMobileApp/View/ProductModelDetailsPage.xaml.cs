@@ -9,11 +9,13 @@ namespace FlexTechMobileApp.View;
 public partial class ProductModelDetailsPage : ContentPage
 {
 	ILocalizationResourceManager _localizationResourceManager;
+	ProductModelDetailsViewModel ViewModel;
 
-	public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel, ILocalizationResourceManager localizationResourceManager)
+    public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel, ILocalizationResourceManager localizationResourceManager)
 	{
 		InitializeComponent();
 		BindingContext = viewmodel;
+		ViewModel = viewmodel;
 
 		_localizationResourceManager = localizationResourceManager;
 	}
@@ -33,7 +35,7 @@ public partial class ProductModelDetailsPage : ContentPage
 
             ProductPopupViewModel viewModel = new(product);
 
-            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel, _localizationResourceManager));
+            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel, _localizationResourceManager, ViewModel));
         }
 		finally
 		{

@@ -18,7 +18,7 @@ namespace FlexTechMobileApp.ViewModels
             try
             {
                 IsBusy = true;
-                SecureStorage.Default.Remove("oAuth");
+                SecureStorage.Default.Remove("Token");
 
                 await Shell.Current.Navigation.PopAsync();
             }

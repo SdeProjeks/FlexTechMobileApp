@@ -11,7 +11,7 @@
     <ScrollView>
         <VerticalStackLayout>
 
-            <VerticalStackLayout Padding="10" Spacing="10">
+            <VerticalStackLayout Padding="10,10,10,50" Spacing="10">
 
                 <FlexLayout Direction="Row">
                     <Label Text="{loc:Translate Dimensions,StringFormat='{0}: '}" FontAttributes="Bold"/>
@@ -24,14 +24,13 @@
                     <Label Text=" kg" />
                 </FlexLayout>
 
-                 <Label Text="{loc:Translate Description, StringFormat='{0}: '}" FontAttributes="Bold"/>
+                <Label Text="{loc:Translate Description, StringFormat='{0}: '}" FontAttributes="Bold"/>
                 <Label Text="{Binding ProductModel.Description}" />
             </VerticalStackLayout>
 
-
             <CollectionView ItemsSource="{Binding ProductModel.Products}" SelectionMode="None">
                 <CollectionView.Header>
-                    <Grid RowDefinitions="60" ColumnDefinitions="70*,30*">
+                    <Grid RowDefinitions="60" ColumnDefinitions="70*,30*" BackgroundColor="{StaticResource TableHeader}">
 
                         <Label Text="{loc:Translate Barcode}"
                        HorizontalOptions="Center" VerticalOptions="Center"
@@ -56,15 +55,6 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
-                <CollectionView.Footer>
-                    <Grid RowDefinitions="auto" ColumnDefinitions="20*,25*,10*,25*,20*" Padding="0,25,0,0">
-                        <Button Text="{loc:Translate Previous}" Grid.Column="1"
-                        Background="White"/>
-                        <Label x:Name="Page" Text="{Binding Page}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                        <Button Text="{loc:Translate Next}" Grid.Column="3"
-                        Background="White" TextColor="Blue"/>
-                    </Grid>
-                </CollectionView.Footer>
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>

@@ -66,10 +66,10 @@
             </CollectionView.ItemTemplate>
             <CollectionView.Footer>
                 <Grid RowDefinitions="auto" ColumnDefinitions="20*,25*,10*,25*,20*" Padding="0,25,0,0">
-                    <Button Text="{loc:Translate Previous}" Grid.Column="1"
-                        Background="White"/>
+                    <Button Text="{loc:Translate Previous}" Clicked="Button_Clicked_Prev" 
+                            Grid.Column="1" Background="White"/>
                     <Label x:Name="Page" Text="{Binding Page}" Grid.Column="2" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    <Button Text="{loc:Translate Next}" Grid.Column="3"
+                    <Button Text="{loc:Translate Next}" Grid.Column="3" Clicked="Button_Clicked_Next"
                         Background="White" TextColor="Blue"/>
                 </Grid>
             </CollectionView.Footer>

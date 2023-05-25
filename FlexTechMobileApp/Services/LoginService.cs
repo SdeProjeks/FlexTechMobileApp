@@ -10,9 +10,6 @@ namespace FlexTechMobileApp.Services
 {
     public class LoginService: BaseService
     {
-        public LoginService() { 
-        }
-
         public async Task<string> PostLogin(string email, string password)
         {
             var request = new HttpRequestMessage(HttpMethod.Post, $"{BaseAddress}/login?email={email}&password={password}");
