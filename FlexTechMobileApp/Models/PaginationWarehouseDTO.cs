@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FlexTechMobileApp.Models
 {
-    public class PaginationProductModelDataModel
+    public class PaginationWarehouseDTO
     {
         public int Current_page { get; set; }
-        public List<ProductModel> Data { get; set; }
+        public List<WarehouseModel> Data { get; set; }
         public string First_page_url { get; set; }
         public int From { get; set; }
         public int Last_page { get; set; }

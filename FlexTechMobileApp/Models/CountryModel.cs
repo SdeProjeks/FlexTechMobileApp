@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace FlexTechMobileApp.Models
 {
-    public class Product
+    public class CountryModel
     {
         public int Id { get; set; }
-        public int Product_model_id { get; set; }
-        public int Status_id { get; set; }
-        public int Warehouse_id { get; set; }
-        public string Barcode { get; set; }
+        public string Postal_code { get; set; }
         public DateTime Created_at { get; set; }
         public DateTime Updated_at { get; set; }
         public DateTime? Deleted_at { get; set; }

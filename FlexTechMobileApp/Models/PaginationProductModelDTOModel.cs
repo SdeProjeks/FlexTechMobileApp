@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace FlexTechMobileApp.Models
 {
-    public class PaginationProductModelModel
+    public class PaginationProductModelDTOModel
     {
-        public PaginationProductModelDataModel Object { get; set; }
+        public PaginationProductModelDTO Object { get; set; }
     }
 }

@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Alerts;
 using FlexTechMobileApp.Services;
+using LocalizationResourceManager.Maui;
+using Mopups.Services;
+using FlexTechMobileApp.View;
 
 namespace FlexTechMobileApp.ViewModels
 {
@@ -18,30 +21,38 @@ namespace FlexTechMobileApp.ViewModels
         [ObservableProperty]
         Product product;
 
-        ProductService productService = new();
+        ILocalizationResourceManager _loc;
+        ProductService productService;
 
-        public ProductPopupViewModel(Product viewModel) { 
-            product = viewModel;
+        public ProductPopupViewModel(Product viewModel, ILocalizationResourceManager loc) { 
+            Product = viewModel;
+            _loc = loc;
+            productService = new(loc);
         }
 
         [RelayCommand]
         public async Task GoToMovePopup()
         {
-            CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+            IsBusy = true;
+            List<WarehouseModel> warehouses = await productService.GetWarehousesAsync();
+
+            WarehouseModel warehouse = warehouses.Find(x => x.Id == Product.Warehouse_id);
+            //warehouses.RemoveAll(x => x.Id.Equals(Product.Warehouse));
+
+            MovePopupViewModel movePopupViewModel = new(product, warehouse, warehouses);
 
 
-            string text = "This is a Toast";
-            ToastDuration duration = ToastDuration.Short;
-            double fontSize = 14;
-
-            var toast = Toast.Make(text, duration, fontSize);
-
-            await toast.Show(cancellationTokenSource.Token);
+            await MopupService.Instance.PushAsync(new MovePopupPage(movePopupViewModel, _loc));
         }
 
         public async Task Extract(ProductModelDetailsViewModel viewModel)
         {
-            await productService.DeleteProduct(Product, viewModel);
+            await productService.DeleteProduct(product, viewModel);
+        }
+
+        public async Task Extract()
+        {
+            await productService.DeleteProduct(product);
         }
     }
 }

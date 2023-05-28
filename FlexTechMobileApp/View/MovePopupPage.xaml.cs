@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using FlexTechMobileApp.Models;
+using FlexTechMobileApp.Services;
 using FlexTechMobileApp.ViewModels;
 using LocalizationResourceManager.Maui;
 using Mopups.Services;
@@ -9,15 +10,17 @@ namespace FlexTechMobileApp.View;
 public partial class MovePopupPage
 {
     MovePopupViewModel ViewModel;
-    Warehouse Selected;
-    ILocalizationResourceManager _localizationResourceManager;
+    WarehouseModel Selected;
+    ILocalizationResourceManager _loc;
+    ProductService ProductService;
 
-	public MovePopupPage(MovePopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager)
+	public MovePopupPage(MovePopupViewModel viewModel, ILocalizationResourceManager loc)
 	{
 		InitializeComponent();
         BindingContext = viewModel;
         ViewModel = viewModel;
-        _localizationResourceManager = localizationResourceManager;
+        _loc = loc;
+        ProductService = new(loc);
 	}
 
     /* For the pesky user who miss clicked and wanna go back to the popup menu.
@@ -38,7 +41,7 @@ public partial class MovePopupPage
 
         try
         {
-            bool confirmed = await DisplayAlert(_localizationResourceManager["Confirmation"], _localizationResourceManager["WannaMoveTheProductTo"], _localizationResourceManager["Yes"], _localizationResourceManager["No"]);
+            bool confirmed = await DisplayAlert(_loc["Confirmation"], _loc["WannaMoveTheProductTo"], _loc["Yes"], _loc["No"]);
 
             if (IsBusy || !confirmed)
             {
@@ -47,8 +50,8 @@ public partial class MovePopupPage
 
             IsBusy = true;
 
-            // API CALL FOR UPDATE
-            await Shell.Current.DisplayAlert("API CALL", Selected.Name, "OK");
+            ViewModel.Product.Warehouse_id = Selected.Id;
+            await ProductService.MoveProduct(ViewModel.Product);
 
             await MopupService.Instance.PopAllAsync();
 

@@ -15,11 +15,15 @@ namespace FlexTechMobileApp.ViewModels
         Product product;
 
         [ObservableProperty]
-        List<Warehouse> warehouseList;
+        WarehouseModel currentwarehouse;
 
-        public MovePopupViewModel(Product product, List<Warehouse> warehouses) { 
-            warehouseList = warehouses;
-            this.product = product;
+        [ObservableProperty]
+        List<WarehouseModel> warehouseList;
+
+        public MovePopupViewModel(Product product, WarehouseModel currentwarehouse, List<WarehouseModel> warehouses) { 
+            Product = product;
+            Currentwarehouse = currentwarehouse;
+            WarehouseList = warehouses;
         }
     }
 }

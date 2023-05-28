@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<mopups:PopupPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:mopups="clr-namespace:Mopups.Pages;assembly=Mopups"
              xmlns:cv="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
              x:Class="FlexTechMobileApp.View.BarcodeReaderPage"
-             Title="Barcode Reader">
-    <VerticalStackLayout VerticalOptions="Start">
-        <cv:CameraView x:Name="cameraView" WidthRequest="400" HeightRequest="300" CamerasLoaded="cameraView_CamerasLoaded" 
+             CloseWhenBackgroundIsClicked="True"
+             BackgroundColor="Transparent">
+    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="300">
+        <VerticalStackLayout>
+            <cv:CameraView x:Name="cameraView" WidthRequest="245" HeightRequest="295" CamerasLoaded="cameraView_CamerasLoaded" 
                        BarCodeDetectionEnabled="True" BarcodeDetected="cameraView_BarcodeDetected"/>
 
-        <Label x:Name="barcodeText" HorizontalOptions="Center"/>
-    </VerticalStackLayout>
-</ContentPage>
+            <Label x:Name="barcodeText" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </Frame>
+</mopups:PopupPage>

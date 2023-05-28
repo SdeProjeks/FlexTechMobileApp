@@ -3,13 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using FlexTechMobileApp.Models;
 using FlexTechMobileApp.Services;
 using FlexTechMobileApp.View;
-using System;
-using System.Collections.Generic;
+using LocalizationResourceManager.Maui;
+using Mopups.Services;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace FlexTechMobileApp.ViewModels
 {
@@ -21,6 +17,8 @@ namespace FlexTechMobileApp.ViewModels
         public ObservableCollection<ProductModel> ProductModels { get; } = new();
 
         ProductModelService productModelService;
+
+        ILocalizationResourceManager _loc;
 
         [ObservableProperty]
         string search = "";
@@ -34,15 +32,27 @@ namespace FlexTechMobileApp.ViewModels
         [ObservableProperty]
         string next = "";
 
-        public ProductModelsViewModel(ProductModelService productModelService) {
+        public ProductModelsViewModel(ProductModelService productModelService, ILocalizationResourceManager loc) {
             Title = "Product models list";
             this.productModelService = productModelService;
+            _loc = loc;
         }
 
         [RelayCommand]
         async Task GoToBarcodePage()
         {
-            await Shell.Current.GoToAsync(nameof(BarcodeReaderPage),true);
+            try
+            {
+                if (IsBusy)
+                    return;
+                IsBusy = true;
+
+                await MopupService.Instance.PushAsync(new BarcodeReaderPage(_loc));
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
 
@@ -55,7 +65,7 @@ namespace FlexTechMobileApp.ViewModels
             {
                 IsBusy = true;
 
-                PaginationProductModelDataModel Page = await productModelService.GetProductModels(search);
+                PaginationProductModelDTO Page = await productModelService.GetProductModels(search);
 
                 ProductModels.Clear();
 
@@ -85,7 +95,7 @@ namespace FlexTechMobileApp.ViewModels
             {
                 IsBusy = true;
 
-                PaginationProductModelDataModel Page = await productModelService.GetPage(url);
+                PaginationProductModelDTO Page = await productModelService.GetPage(url);
 
                 ProductModels.Clear();
 

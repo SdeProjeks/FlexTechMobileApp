@@ -8,16 +8,15 @@ namespace FlexTechMobileApp.View;
 
 public partial class ProductModelDetailsPage : ContentPage
 {
-	ILocalizationResourceManager _localizationResourceManager;
+	ILocalizationResourceManager _loc;
 	ProductModelDetailsViewModel ViewModel;
 
-    public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel, ILocalizationResourceManager localizationResourceManager)
+    public ProductModelDetailsPage(ProductModelDetailsViewModel viewmodel, ILocalizationResourceManager loc)
 	{
 		InitializeComponent();
 		BindingContext = viewmodel;
 		ViewModel = viewmodel;
-
-		_localizationResourceManager = localizationResourceManager;
+		_loc = loc;
 	}
 
     private async void Button_Clicked(object sender, EventArgs e)
@@ -33,9 +32,9 @@ public partial class ProductModelDetailsPage : ContentPage
             if (product == null)
                 return;
 
-            ProductPopupViewModel viewModel = new(product);
+            ProductPopupViewModel viewModel = new(product, _loc);
 
-            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel, _localizationResourceManager, ViewModel));
+            await MopupService.Instance.PushAsync(new ProductPopupPage(viewModel, _loc, ViewModel));
         }
 		finally
 		{

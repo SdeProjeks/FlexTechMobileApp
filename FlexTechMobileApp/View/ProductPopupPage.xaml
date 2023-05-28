@@ -8,7 +8,7 @@
              x:Class="FlexTechMobileApp.View.ProductPopupPage"
              CloseWhenBackgroundIsClicked="True"
              BackgroundColor="Transparent">
-    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="250">
+    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="300">
         <VerticalStackLayout>
             <Label Text="{Binding Product.Barcode}" FontSize="Medium" Margin="0,0,0,20"
                    HorizontalOptions="Center"/>

@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using FlexTechMobileApp.Models;
+using FlexTechMobileApp.Services;
 using FlexTechMobileApp.ViewModels;
 using LocalizationResourceManager.Maui;
 using Mopups.Services;
@@ -10,15 +11,26 @@ namespace FlexTechMobileApp.View;
 public partial class ProductPopupPage
 {
     private ProductPopupViewModel ViewModel;
-    ILocalizationResourceManager _localizationResourceManager;
+    ILocalizationResourceManager _loc;
     ProductModelDetailsViewModel _productModelDetailsViewModel;
+    public bool fromBarcode = false;
 
-	public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager localizationResourceManager, ProductModelDetailsViewModel productModelDetailsViewModel)
+    public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager loc)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+        ViewModel = viewModel;
+        _loc = loc;
+        _productModelDetailsViewModel = new();
+        fromBarcode = true;
+    }
+
+    public ProductPopupPage(ProductPopupViewModel viewModel, ILocalizationResourceManager loc, ProductModelDetailsViewModel productModelDetailsViewModel)
 	{
 		InitializeComponent();
 		BindingContext = viewModel;
         ViewModel = viewModel;
-        _localizationResourceManager = localizationResourceManager;
+        _loc = loc;
         _productModelDetailsViewModel = productModelDetailsViewModel;
 	}
 
@@ -35,13 +47,22 @@ public partial class ProductPopupPage
     {
         try
         {
-            bool confirmed = await DisplayAlert(_localizationResourceManager["Confirmation"], _localizationResourceManager["SureYouWannaExtract"], _localizationResourceManager["Yes"], _localizationResourceManager["No"]);
+            bool confirmed = await DisplayAlert(_loc["Confirmation"], _loc["SureYouWannaExtract"], _loc["Yes"], _loc["No"]);
 
             if (IsBusy || !confirmed)
                 return;
 
             IsBusy = true;
-            await ViewModel.Extract(_productModelDetailsViewModel);
+            if (fromBarcode)
+            {
+                await ViewModel.Extract();
+                return;
+            } else {
+                await ViewModel.Extract(_productModelDetailsViewModel);
+                return;
+            }
+
+
         }
         finally
         {
@@ -60,17 +81,7 @@ public partial class ProductPopupPage
             if (IsBusy)
                 return;
 
-            IsBusy = true;
-            List<Warehouse> warehouses = new()
-            {
-                new (){ Id = 1, Name = "test"},
-                new (){ Id = 2, Name = "test2"}
-            };
-
-            MovePopupViewModel movePopupViewModel = new(ViewModel.Product, warehouses);
-
-            
-            await MopupService.Instance.PushAsync(new MovePopupPage(movePopupViewModel, _localizationResourceManager));
+            await ViewModel.GoToMovePopup();
         }
         finally
         {

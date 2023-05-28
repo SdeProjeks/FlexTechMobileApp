@@ -10,20 +10,20 @@
              BackgroundColor="Transparent"
              CloseWhenBackgroundIsClicked="True">
 
-    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="250">
+    <Frame CornerRadius="10" BackgroundColor="White" WidthRequest="250" HeightRequest="300">
         <VerticalStackLayout>
             <Label Text="{Binding Product.Barcode}" FontSize="Medium" Margin="0,0,0,20" HorizontalOptions="Center" />
 
             <FlexLayout Margin="0,0,0,15">
                 <Label Text="{loc:Translate Current,StringFormat='{0}: '}" FontAttributes="Bold"/>
-                <Label Text="Name of current" />
+                <Label Text="{Binding Currentwarehouse.Name}" />
             </FlexLayout>
 
             <Picker x:Name="NewWarehouse"
                     Title="{loc:Translate ChooseAnotherWarehouse}" Margin="0,0,0,30"
                     ItemsSource="{Binding WarehouseList}"
                     ItemDisplayBinding="{Binding Name}"
-                    SelectedItem="{model:Warehouse}" 
+                    SelectedItem="{model:WarehouseModel}" 
                     SelectedIndexChanged="NewWarehouse_SelectedIndexChanged" />
 
 

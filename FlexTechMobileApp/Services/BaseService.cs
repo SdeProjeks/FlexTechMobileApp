@@ -9,8 +9,10 @@ namespace FlexTechMobileApp.Services
     public class BaseService
     {
         public HttpClient httpClient = new();
-        public string BaseAddress = "http://10.130.66.50:8080/api";
+        public string BaseAddress = "http://192.168.0.64:8080/api";
         public int PageAmount = 15;
+
+        public bool IsBusy = false;
 
 
     }
